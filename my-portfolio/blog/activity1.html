@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Source+Sans+3:wght@300;400,500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'serif-heading': ['"Crimson Pro"', 'Georgia', 'serif'],
+                        'body': ['"Source Sans 3"', 'system-ui', 'sans-serif'],
+                    },
+                    colors: {
+                        'academic': {
+                            navy: '#1a3a5c',
+                            'navy-dark': '#0f2440',
+                            'navy-light': '#2a5a8c',
+                            burgundy: '#7b2d26',
+                            gold: '#b8860b',
+                            'gold-light': '#d4a843',
+                            cream: '#fafaf7',
+                            'warm-white': '#f8f6f1',
+                            'warm-gray': '#e8e4dc',
+                            'text-dark': '#2c2c2c',
+                            'text-body': '#3d3d3d',
+                            'text-muted': '#6b6b6b',
+                            'border': '#d4cfc5',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <title>DCOSS-IoT 2024 Conference Presentation | Mostakim Jihad</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Source Sans 3', system-ui, sans-serif;
+            color: #3d3d3d;
+            background-color: #fafaf7;
+            -webkit-font-smoothing: antialiased;
+        }
+        h1, h2, h3, h4 { font-family: 'Crimson Pro', Georgia, serif; }
+        .academic-nav {
+            background: #1a3a5c;
+            border-bottom: 3px solid #b8860b;
+        }
+        .nav-link {
+            color: rgba(255,255,255,0.8);
+            font-size: 0.875rem;
+            font-weight: 500;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+            padding: 0.75rem 0;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: #ffffff;
+            border-bottom-color: #b8860b;
+        }
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: #6b6b6b;
+        }
+        .meta-item i { color: #b8860b; width: 16px; text-align: center; }
+        .section-divider {
+            width: 60px;
+            height: 2px;
+            background: #b8860b;
+            margin-bottom: 2rem;
+        }
+        .academic-footer {
+            background: #1a3a5c;
+            border-top: 3px solid #b8860b;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="academic-nav sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6">
+            <div class="flex items-center justify-between">
+                <a href="../index.html" class="text-white font-serif-heading text-lg font-semibold tracking-wide py-3">
+                    M. Jihad
+                </a>
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="../index.html#about" class="nav-link">About</a>
+                    <a href="../index.html#publications" class="nav-link">Publications</a>
+                    <a href="../index.html#research" class="nav-link">Research</a>
+                    <a href="../index.html#education" class="nav-link">Education</a>
+                    <a href="../index.html#experience" class="nav-link">Experience</a>
+                    <a href="../index.html#blog" class="nav-link active">Blog</a>
+                    <a href="../index.html#projects" class="nav-link">Projects</a>
+                    <a href="../index.html#awards" class="nav-link">Awards</a>
+                </div>
+                <button id="mobile-menu-btn" class="md:hidden text-white p-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+            <div id="mobile-menu" class="hidden md:hidden pb-4">
+                <div class="flex flex-col space-y-1 pt-2 border-t border-white/10">
+                    <a href="../index.html" class="text-white/80 hover:text-white text-sm py-1.5">← Back to Home</a>
+                    <a href="../index.html#publications" class="text-white/80 hover:text-white text-sm py-1.5">Publications</a>
+                    <a href="../index.html#blog" class="text-white/80 hover:text-white text-sm py-1.5">Blog</a>
+                    <a href="../index.html#awards" class="text-white/80 hover:text-white text-sm py-1.5">Awards</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Article Header -->
+    <section class="bg-white border-b border-academic-border">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 py-10 md:py-14">
+            <!-- Breadcrumb -->
+            <nav class="mb-6 text-sm text-academic-text-muted">
+                <a href="../index.html" class="hover:text-academic-navy transition-colors">Home</a>
+                <span class="mx-2">/</span>
+                <a href="../index.html#blog" class="hover:text-academic-navy transition-colors">Blog</a>
+                <span class="mx-2">/</span>
+                <span class="text-academic-navy">DCOSS-IoT 2024</span>
+            </nav>
+
+            <h1 class="font-serif-heading text-2xl md:text-3xl lg:text-4xl font-bold text-academic-navy leading-tight mb-4">
+                Md. Abdur Razzaque Presents Groundbreaking Research at DCOSS-IoT 2024
+            </h1>
+            <p class="font-serif-heading text-lg text-academic-text-muted italic mb-6">
+                A Tribute to Mentorship and Team Effort
+            </p>
+
+            <!-- Meta Information -->
+            <div class="flex flex-wrap gap-x-6 gap-y-2 mb-4">
+                <div class="meta-item">
+                    <i class="fas fa-user-circle"></i>
+                    <span>Mostakim Jihad</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>Published: July 13, 2024</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-calendar-day"></i>
+                    <span>Event: May 1, 2024</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Abu Dhabi, UAE</span>
+                </div>
+            </div>
+
+            <!-- Tags -->
+            <div class="flex flex-wrap gap-2">
+                <span class="inline-block bg-academic-navy/5 border border-academic-border text-academic-navy text-xs font-medium px-3 py-1 rounded-sm">Conference</span>
+                <span class="inline-block bg-academic-navy/5 border border-academic-border text-academic-navy text-xs font-medium px-3 py-1 rounded-sm">DCOSS-IoT</span>
+                <span class="inline-block bg-academic-navy/5 border border-academic-border text-academic-navy text-xs font-medium px-3 py-1 rounded-sm">Digital Twin</span>
+                <span class="inline-block bg-academic-navy/5 border border-academic-border text-academic-navy text-xs font-medium px-3 py-1 rounded-sm">Edge Computing</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Article Content -->
+    <article class="max-w-4xl mx-auto px-4 sm:px-6 py-10">
+        <div class="section-divider"></div>
+        
+        <!-- Video Embed -->
+        <div class="mb-8 bg-white border border-academic-border rounded-sm overflow-hidden shadow-sm">
+            <div class="relative w-full" style="padding-bottom: 56.25%;">
+                <iframe class="absolute top-0 left-0 w-full h-full" 
+                    src="https://www.youtube.com/embed/yvh6BEmguUA?si=PcfVuDD_hx_uhGuh" 
+                    title="DCOSS-IoT 2024 Presentation" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    referrerpolicy="strict-origin-when-cross-origin" 
+                    allowfullscreen></iframe>
+            </div>
+        </div>
+
+        <!-- Article Body -->
+        <div class="prose max-w-none">
+            <p class="text-academic-text-body text-base md:text-lg leading-relaxed mb-6">
+                Md. Abdur Razzaque sir, Chairman of Dhaka University's CSE department, presents our research at the prestigious 
+                <strong class="text-academic-navy">20th Annual International Conference on Distributed Computing in Smart Systems 
+                and the Internet of Things (DCOSS-IoT 2024)</strong> in Abu Dhabi, United Arab Emirates!
+            </p>
+
+            <p class="text-academic-text-body text-base md:text-lg leading-relaxed mb-6">
+                While I'm unable to be there in person, witnessing his presentation face-to-face would have been a dream. 
+                I am deeply grateful to my supervisor, <strong class="text-academic-navy">Palash Roy sir</strong>, whose 
+                unwavering support and guidance have been instrumental throughout this journey.
+            </p>
+
+            <!-- Related Publication Reference -->
+            <div class="bg-white border border-academic-border rounded-sm p-5 mt-8">
+                <h3 class="font-serif-heading font-semibold text-academic-navy mb-2 flex items-center gap-2">
+                    <i class="fas fa-book text-academic-gold text-sm"></i>
+                    Related Publication
+                </h3>
+                <p class="text-sm text-academic-text-body leading-relaxed">
+                    <strong>Mostakim Jihad</strong>, M. T. Rodshi, A. Al Fahad, P. Roy, M. A. Razzaque, and M. Mehedi Hassan,
+                    "<em>Quality of Experience Aware Task Offloading in Digital Twinning Vehicular Edge Computing</em>,"
+                    in <em>20th International Conference on DCOSS-IoT</em>, Abu Dhabi, 2024.
+                </p>
+                <a href="https://doi.org/10.1109/DCOSS-IoT61029.2024.00043" 
+                   class="inline-flex items-center gap-1 text-sm text-academic-navy hover:text-academic-burgundy transition-colors font-medium mt-2">
+                    <i class="fas fa-external-link-alt text-xs"></i> View Paper on IEEE Xplore
+                </a>
+            </div>
+        </div>
+    </article>
+
+    <!-- Footer -->
+    <footer class="academic-footer py-8 mt-8">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+                <div class="text-center md:text-left">
+                    <a href="../index.html" class="text-white/90 font-serif-heading text-lg font-semibold">Mostakim Jihad</a>
+                    <p class="text-white/50 text-sm">Software Engineer & Researcher</p>
+                </div>
+                <div class="flex items-center gap-5">
+                    <a href="mailto:jihad.academia@gmail.com" class="text-white/50 hover:text-academic-gold transition-colors">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/mostakim-jihad-9b844a202/" class="text-white/50 hover:text-academic-gold transition-colors">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://github.com/mostakimjihad" class="text-white/50 hover:text-academic-gold transition-colors">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </div>
+                <p class="text-white/40 text-sm">&copy; 2024 Mostakim Jihad</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>
