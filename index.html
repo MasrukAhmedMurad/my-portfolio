@@ -7,6 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Source+Sans+3:wght@300;400,500;600;700&display=swap" rel="stylesheet">
     <script>
+        
         tailwind.config = {
             theme: {
                 extend: {
@@ -38,6 +39,75 @@
     </script>
     <title>M. A. Murad | Academic Profile</title>
     <style>
+
+/* Activities slider */
+.act-track {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    outline: none;
+}
+.act-track::-webkit-scrollbar { display: none; }
+.act-slide {
+    flex: 0 0 100%;
+    scroll-snap-align: start;
+    margin: 0;
+}
+@media (min-width: 640px)  { .act-slide { flex-basis: calc((100% - 1rem) / 2); } }
+@media (min-width: 1024px) { .act-slide { flex-basis: calc((100% - 2rem) / 3); } }
+.act-slide img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border: 1px solid #d4cfc5;
+    border-radius: 2px;
+    background: #e8e4dc;
+}
+.act-slide figcaption {
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+    color: #6b6b6b;
+    font-style: italic;
+}
+.act-btn {
+    width: 2rem; height: 2rem;
+    border: 1px solid #d4cfc5;
+    background: #fff;
+    color: #1a3a5c;
+    border-radius: 2px;
+    transition: all 0.2s ease;
+}
+.act-btn:hover:not(:disabled) { background: #1a3a5c; color: #fff; border-color: #1a3a5c; }
+.act-btn:disabled { opacity: 0.35; cursor: default; }
+
+
+
+
+
+
+
+
+/* Who I Am: collapsible text */
+.who-text {
+    position: relative;
+    overflow: hidden;
+    transition: max-height 0.35s ease;
+}
+.who-text::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    height: 3rem;
+    background: linear-gradient(to bottom, rgba(250,250,247,0), #fafaf7);
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+}
+.who-text.is-open::after { opacity: 0; }
+
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
         body {
@@ -358,9 +428,10 @@
     <nav class="academic-nav sticky top-0 z-50">
         <div class="max-w-6xl mx-auto px-4 sm:px-6">
             <div class="flex items-center justify-between">
-                <a href="#" class="text-white font-serif-heading text-lg font-semibold tracking-wide py-3">
-                    M. A. Murad
-                </a>
+                 <a href="#" class="text-white font-serif-heading text-lg font-semibold tracking-wide py-3
+                          2xl:absolute 2xl:left-6 2xl:top-1/2 2xl:-translate-y-1/2 2xl:py-0">
+            M. A. Murad
+        </a>
                 
                 <!-- Desktop Navigation -->
                 <div class="hidden md:flex items-center space-x-6">
@@ -369,11 +440,16 @@
                     <a href="#research" class="nav-link">Research</a>
                     <a href="#education" class="nav-link">Education</a>
                     <a href="#experience" class="nav-link">Experience</a>
+
                     <a href="#projects" class="nav-link">Projects</a>
                     <a href="#skills" class="nav-link">Skills</a>
+                                        <a href="#volunteering" class="nav-link">Volunteering</a>
+                                                                                <a href="#awards" class="nav-link">Awards</a>
+
+
                     <a href="#programming" class="nav-link">GitHub</a>
+
                     <a href="#blog" class="nav-link">Activity</a>
-                    <a href="#awards" class="nav-link">Awards</a>
                     <a href="resume.pdf" target="_blank" class="nav-link flex items-center gap-1">
                         <i class="fas fa-file-pdf text-xs"></i> CV
                     </a>
@@ -395,11 +471,16 @@
                     <a href="#research" class="text-white/80 hover:text-white text-sm py-1.5">Research</a>
                     <a href="#education" class="text-white/80 hover:text-white text-sm py-1.5">Education</a>
                     <a href="#experience" class="text-white/80 hover:text-white text-sm py-1.5">Experience</a>
+
                     <a href="#projects" class="text-white/80 hover:text-white text-sm py-1.5">Projects</a>
                     <a href="#skills" class="text-white/80 hover:text-white text-sm py-1.5">Skills</a>
-                    <a href="#programming" class="text-white/80 hover:text-white text-sm py-1.5">GitHub</a>
+                                                            <a href="#volunteering" class="text-white/80 hover:text-white text-sm py-1.5">Volunteering</a>
+
+                                                          <a href="#awards" class="text-white/80 hover:text-white text-sm py-1.5">Awards</a>
+
+                                                            <a href="#programming" class="text-white/80 hover:text-white text-sm py-1.5">GitHub</a>
+
                     <a href="#blog" class="text-white/80 hover:text-white text-sm py-1.5">Activity</a>
-                    <a href="#awards" class="text-white/80 hover:text-white text-sm py-1.5">Awards</a>
                     <a href="resume.pdf" target="_blank" class="text-white/80 hover:text-white text-sm py-1.5">
                         <i class="fas fa-file-pdf mr-1"></i> Curriculum Vitae
                     </a>
@@ -425,7 +506,7 @@
                         M. A. Murad
                     </h1>
                     <p class="text-white/70 text-lg md:text-xl font-serif-heading italic mb-4">
-                        Software Engineer & Researcher
+                        Software Engineer | MS/PhD Applicant in Cloud Systems
                     </p>
                     
                     <p class="text-white/80 text-base leading-relaxed max-w-2xl mb-6">
@@ -476,7 +557,7 @@
                 </div>
 
                 <!-- Scholar Stats - Right Side Panel -->
-                <div class="scholar-stats-panel flex-shrink-0 hidden md:block" id="scholar-stats">
+                <!-- <div class="scholar-stats-panel flex-shrink-0 hidden md:block" id="scholar-stats">
                     <h4><i class="fas fa-graduation-cap" style="margin-right:4px"></i> Scholar Metrics</h4>
                     <div class="scholar-stat-row">
                         <span class="scholar-stat-label">Citations</span>
@@ -493,11 +574,11 @@
                     <a href="https://scholar.google.com/citations?hl=en&user=HjiSxCMAAAAJ" target="_blank" class="scholar-panel-link">
                         <i class="fas fa-external-link-alt" style="margin-right:3px"></i> View Profile
                     </a>
-                </div>
+                </div> -->
             </div>
 
             <!-- Mobile Scholar Stats (visible on small screens) -->
-            <div class="md:hidden mt-6 flex justify-center gap-4" id="scholar-stats-mobile">
+            <!-- <div class="md:hidden mt-6 flex justify-center gap-4" id="scholar-stats-mobile">
                 <div class="scholar-stats-panel">
                     <div class="flex items-center gap-4">
                         <div class="text-center">
@@ -516,23 +597,111 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </section>
 
     <!-- Main Content -->
     <main class="max-w-6xl mx-auto px-4 sm:px-6">
 
+
+        <!-- Activities Slider -->
+<!-- <section class="academic-section">
+    <div class="flex items-center justify-between mb-1">
+        <h2 class="section-heading">Activities</h2>
+        <div class="flex gap-2">
+            <button id="act-prev" type="button" aria-label="Previous"
+                    class="act-btn"><i class="fas fa-chevron-left text-xs"></i></button>
+            <button id="act-next" type="button" aria-label="Next"
+                    class="act-btn"><i class="fas fa-chevron-right text-xs"></i></button>
+        </div>
+    </div>
+    <div class="section-divider"></div>
+
+    <div id="act-track" class="act-track" tabindex="0" aria-label="Activity photos">
+        <figure class="act-slide">
+            <img src="asset/activity1.jpg" alt="Presenting at EBISION 2026" loading="lazy">
+            <figcaption>Presenting at EBISION 2026, South Korea</figcaption>
+        </figure>
+        <figure class="act-slide">
+            <img src="asset/activity2.jpg" alt="Volunteering with Islamic Relief Bangladesh" loading="lazy">
+            <figcaption>Volunteering with Islamic Relief Bangladesh</figcaption>
+        </figure>
+        <figure class="act-slide">
+            <img src="asset/activity3.jpg" alt="ICCIT 2025 conference" loading="lazy">
+            <figcaption>ICCIT 2025, Cox's Bazar</figcaption>
+        </figure>
+        <figure class="act-slide">
+            <img src="asset/activity4.jpg" alt="Good Neighbors community program" loading="lazy">
+            <figcaption>Community program with Good Neighbors Bangladesh</figcaption>
+        </figure>
+    </div>
+</section> -->
+
+
+
+<!-- Who I Am -->
+<section class="academic-section">
+    <h2 class="section-heading">Who I Am</h2>
+    <div class="section-divider"></div>
+
+    <p class="text-academic-text-body leading-relaxed">
+        <span id="who-content">I'm Murad, Software engineer with 2+ years of backend experience in production enterprise systems (Odoo ERP, PostgreSQL, Python,
+Django) and a co-author of an IEEE-published machine learning paper. My research focus is AI-enabled observability for
+microservices,specifically anomaly detection and root cause localization when traces, logs, or metrics are incomplete. I
+am applying for an MS position with research funding to extend this work toward reliable and secure cloud systems.</span>
+        <button id="who-toggle" type="button" aria-expanded="false"
+                class="ml-1 text-sm font-semibold text-academic-navy hover:text-academic-burgundy transition-colors underline decoration-academic-gold/50">
+            Read more
+        </button>
+    </p>
+</section>
+
         <!-- Publications Section -->
         <section id="publications" class="academic-section">
             <div class="flex items-center justify-between mb-1">
-                <h2 class="section-heading">Publications</h2>
+                <h2 class="section-heading">Publications & Presentations</h2>
                 <span class="text-sm text-academic-text-muted italic">1 Published Works</span>
             </div>
             <div class="section-divider"></div>
 
-            <!-- Publication 1
+            <!-- Publication 1 -->
             <div class="pub-entry">
+                <div class="flex gap-4">
+                    <div class="flex-shrink-0 pt-1">
+                        <span class="pub-number">[1]</span>
+                    </div>
+                    <div class="flex-1">
+                        <div class="flex flex-wrap items-center gap-2 mb-2">
+                            <span class="pub-badge pub-badge-journal">Poster & Short Paper</span>
+                            <span class="text-xs text-academic-text-muted">2026</span>
+                        </div>
+                        <h3 class="pub-title mb-2">
+                          SparseRank: Explainable Cost-Aware Feature Selection for Anomaly Detection in E-Commerce Microservices
+                        </h3>
+                        <p class="pub-authors mb-1">
+                            Omar Bin Kasim Bhuian, Sang-Hoon Choi, <strong>M. A. Murad</strong>, Md Tanzimul Islam Refat, Ki-Woong Park
+                        </p>
+                        <p class="pub-venue mb-3">
+                            <em>EBISION 2026, South Korea</em>
+                        </p>
+                        <!-- <div class="flex flex-wrap items-center gap-4 text-sm">
+                            <span class="pub-cited-badge" data-doi="10.1016/j.future.2025.108144">
+                                <i class="fas fa-quote-right text-xs"></i> Cited by: <span class="cite-count">—</span>
+                            </span>
+                            <span class="text-academic-text-muted">
+                                <strong>DOI:</strong> <a href="https://doi.org/10.1016/j.future.2025.108144" class="text-academic-navy hover:text-academic-burgundy transition-colors underline decoration-academic-gold/50">10.1016/j.future.2025.108144</a>
+                            </span>
+                            <a href="https://doi.org/10.1016/j.future.2025.108144" class="inline-flex items-center gap-1 text-academic-navy hover:text-academic-burgundy transition-colors font-medium">
+                                <i class="fas fa-external-link-alt text-xs"></i> View Paper
+                            </a>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+
+              <!-- Publication 1 -->
+            <!-- <div class="pub-entry">
                 <div class="flex gap-4">
                     <div class="flex-shrink-0 pt-1">
                         <span class="pub-number">[1]</span>
@@ -565,13 +734,15 @@
                     </div>
                 </div>
             </div> -->
-Cited by:
+
+
+<!-- Cited by: -->
 
             <!-- Publication 2 -->
             <div class="pub-entry">
                 <div class="flex gap-4">
                     <div class="flex-shrink-0 pt-1">
-                        <span class="pub-number">[1]</span>
+                        <span class="pub-number">[2]</span>
                     </div>
                     <div class="flex-1">
                         <div class="flex flex-wrap items-center gap-2 mb-2">
@@ -585,7 +756,7 @@ Cited by:
                            Sanjida Akter, <strong>M. A. Murad</strong>, Md Faruk Hosen, Fatema Tuj Johora, Tania Sultana
                         </p>
                         <p class="pub-venue mb-3">
-                            <em>2025 28th International Conference on Computer and Information Technology (ICCIT)</em>, Cox's Bazar, Bangladesh, 2025
+                            <em>28th International Conference on Computer and Information Technology (ICCIT)</em>, Cox's Bazar, Bangladesh, 2025
                         </p>
                         <div class="flex flex-wrap items-center gap-4 text-sm">
                             <span class="pub-cited-badge" data-doi="10.1109/DCOSS-IoT61029.2024.00043">
@@ -601,6 +772,44 @@ Cited by:
                     </div>
                 </div>
             </div>
+
+
+              <!-- Publication 2 -->
+            <div class="pub-entry">
+                <div class="flex gap-4">
+                    <div class="flex-shrink-0 pt-1">
+                        <span class="pub-number">[3]</span>
+                    </div>
+                    <div class="flex-1">
+                        <div class="flex flex-wrap items-center gap-2 mb-2">
+                            <span class="pub-badge pub-badge-conference">Conference Paper (Accepted)</span>
+                            <span class="text-xs text-academic-text-muted">2025</span>
+                        </div>
+                        <h3 class="pub-title mb-2">
+                            Enhanced Prediction of Interleukin-13 Inducing Peptides Using Sequence Embedding and CNN Classifier 
+                        </h3>
+                        <p class="pub-authors mb-1">
+                           <strong>M. A. Murad</strong>, Sanjida Akter, Md Faruk Hosen, Fatema Tuj Johora, Tania Sultana
+                        </p>
+                        <p class="pub-venue mb-3">
+                            <em>International Conference on Intelligent Data Analysis and Applications (IDAA 2025)</em>, Daffodil International University, Dhaka, Bangladesh, 2025
+                        </p>
+                        <!-- <div class="flex flex-wrap items-center gap-4 text-sm">
+                            <span class="pub-cited-badge" data-doi="10.1109/DCOSS-IoT61029.2024.00043">
+                                <i class="fas fa-quote-right text-xs"></i> Cited by: <span class="cite-coun"></span>
+                            </span>
+                            <span class="text-academic-text-muted">
+                                <strong>DOI:</strong> <a href="https://doi.org/10.1109/ICCIT68739.2025.11490328" class="text-academic-navy hover:text-academic-burgundy transition-colors underline decoration-academic-gold/50">10.1109/DCOSS-IoT61029.2024.00043</a>
+                            </span>
+                            <a href="https://doi.org/10.1109/ICCIT68739.2025.11490328" class="inline-flex items-center gap-1 text-academic-navy hover:text-academic-burgundy transition-colors font-medium">
+                                <i class="fas fa-external-link-alt text-xs"></i> View Paper
+                            </a>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+
+
         </section>
 
         <!-- Research Interests Section -->
@@ -612,28 +821,29 @@ Cited by:
                     <div class="w-12 h-12 mx-auto mb-3 bg-academic-navy/5 rounded-full flex items-center justify-center">
                         <i class="fas fa-cube text-academic-navy text-lg"></i>
                     </div>
-                    <h3 class="font-serif-heading font-semibold text-academic-navy mb-1">Cloud Security</h3>
+                    <h3 class="font-serif-heading font-semibold text-academic-navy mb-1">AI-enabled observability and AIOps</h3>
                     <p class="text-xs text-academic-text-muted leading-relaxed"></p>
                 </div>
                 <div class="bg-white border border-academic-border rounded-sm p-5 text-center hover:border-academic-navy transition-colors">
                     <div class="w-12 h-12 mx-auto mb-3 bg-academic-navy/5 rounded-full flex items-center justify-center">
                         <i class="fas fa-cube text-academic-navy text-lg"></i>
                     </div>
-                    <h3 class="font-serif-heading font-semibold text-academic-navy mb-1">Microservices</h3>
+                    <h3 class="font-serif-heading font-semibold text-academic-navy mb-1">Anomaly detection and root cause localization in microservices </h3>
                     <p class="text-xs text-academic-text-muted leading-relaxed"></p>
                 </div>
                 <div class="bg-white border border-academic-border rounded-sm p-5 text-center hover:border-academic-navy transition-colors">
                     <div class="w-12 h-12 mx-auto mb-3 bg-academic-navy/5 rounded-full flex items-center justify-center">
                         <i class="fas fa-cube text-academic-navy text-lg"></i>
                     </div>
-                    <h3 class="font-serif-heading font-semibold text-academic-navy mb-1">Kernal Security</h3>
+                    <h3 class="font-serif-heading font-semibold text-academic-navy mb-1">Robust multimodal
+learning under missing telemetry (traces, logs, metrics)</h3>
                     <p class="text-xs text-academic-text-muted leading-relaxed"></p>
                 </div>
                 <div class="bg-white border border-academic-border rounded-sm p-5 text-center hover:border-academic-navy transition-colors">
                     <div class="w-12 h-12 mx-auto mb-3 bg-academic-navy/5 rounded-full flex items-center justify-center">
                         <i class="fas fa-cube text-academic-navy text-lg"></i>
                     </div>
-                    <h3 class="font-serif-heading font-semibold text-academic-navy mb-1">Bioinformatics</h3>
+                    <h3 class="font-serif-heading font-semibold text-academic-navy mb-1">Cloud and kernel-level security</h3>
                     <p class="text-xs text-academic-text-muted leading-relaxed"></p>
                 </div>
             </div>
@@ -664,12 +874,17 @@ Cited by:
                                 <strong class="text-academic-text-dark">CGPA: 3.61 / 4.00</strong> • 
                                 Research Focus: Cloud Security, Microservice, Bioinformatics
                             </p>
+                             <h3 class="font-serif-heading text-md font-semibold text-academic-navy">
+                                <strong class="">Thesis :</strong>FS–RFE: A Hybrid Feature Selection and Attention-Based LSTM Framework for Exploring Neurodysfunction
+Risk in Dementia Diseases                                  </h3>
+                              <p class="text-sm text-academic-text-muted">
+                          </p>
                         </div>
                     </div>
                 </div>
 
                 <!-- HSC -->
-                <div class="timeline-item">
+                <!-- <div class="timeline-item">
                     <div class="flex flex-col sm:flex-row sm:items-start gap-4">
                         <div class="flex-shrink-0">
                             <div class="w-12 h-12 bg-white border border-academic-border rounded-sm flex items-center justify-center">
@@ -689,10 +904,10 @@ Cited by:
                             </p>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
                 <!-- SSC -->
-                <div class="timeline-item">
+                <!-- <div class="timeline-item">
                     <div class="flex flex-col sm:flex-row sm:items-start gap-4">
                         <div class="flex-shrink-0">
                             <div class="w-12 h-12 bg-white border border-academic-border rounded-sm flex items-center justify-center">
@@ -711,7 +926,7 @@ Cited by:
                                 <strong class="text-academic-text-dark">GPA: 4.61 / 5.00</strong> • Science Group
                             </p>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </section>
@@ -721,6 +936,44 @@ Cited by:
             <h2 class="section-heading">Professional Experience</h2>
             <div class="section-divider"></div>
             <div class="pl-1">
+
+
+                               <!-- Jr. Software Engineer -->
+                <div class="timeline-item">
+                    <div class="flex flex-col sm:flex-row sm:items-start gap-4">
+                        <div class="flex-shrink-0">
+                            <div class="w-12 h-12 bg-white border border-academic-border rounded-sm flex items-center justify-center">
+                                <img src="asset/null.jpg" alt="CAMLAs" class="w-7 h-7 object-contain rounded-sm">
+                            </div>
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-1">
+                                <h3 class="font-serif-heading text-lg font-semibold text-academic-navy">
+                                    Research Assistant
+                                </h3>
+                                <span class="timeline-date">October 2024 – January 2025</span>
+                            </div>
+                            <p class="text-academic-text-body font-medium mb-2"> Centre for Advanced Machine Learning & Applications (CAMLAs)</p>
+                            <ul class="text-sm text-academic-text-body space-y-1.5 list-none">
+                                <li class="flex items-start gap-2">
+                                    <span class="text-academic-gold mt-1.5 flex-shrink-0">▸</span>
+                                    <span>Pre-processed high-dimensional genomic data and applied ML/DL dimensionality reduction, followed by differential
+gene expression and enrichment analysis.</span>
+                                </li>
+                                <!-- <li class="flex items-start gap-2">
+                                    <span class="text-academic-gold mt-1.5 flex-shrink-0">▸</span>
+                                    <span>Employing Javascript and python to process large scale of data and organize into various predefined report formats and include image and attatchment.</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-academic-gold mt-1.5 flex-shrink-0">▸</span>
+                                    <span>Reduced time and human engagement by implementing one file to multi format documents processing.</span>
+                                </li> -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+
                 <!-- Software Engineer -->
                 <div class="timeline-item">
                     <div class="flex flex-col sm:flex-row sm:items-start gap-4">
@@ -732,7 +985,7 @@ Cited by:
                         <div class="flex-1">
                             <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-1">
                                 <h3 class="font-serif-heading text-lg font-semibold text-academic-navy">
-                                    Software Engineer
+                                    Junior Software Engineer (ERP Team)
                                 </h3>
                                 <span class="timeline-date">Jan 2025 – Oct 2026</span>
                             </div>
@@ -740,12 +993,14 @@ Cited by:
                             <ul class="text-sm text-academic-text-body space-y-1.5 list-none">
                                 <li class="flex items-start gap-2">
                                     <span class="text-academic-gold mt-1.5 flex-shrink-0">▸</span>
-                                    <span>Design and implement ERP solutions with focus on Odoo customization, rapid module development, and external API integrations</span>
+                                    <span>Developed and maintained custom Odoo modules (Python, XML, JavaScript) for sales, purchase, accounting, and
+inventory workflows, and debugged and optimized PostgreSQL queries for large manufacturing, trading, and financial
+services clients.</span>
                                 </li>
-                                <li class="flex items-start gap-2">
+                                <!-- <li class="flex items-start gap-2">
                                     <span class="text-academic-gold mt-1.5 flex-shrink-0">▸</span>
                                     <span>Improve ERP performance and scalability by researching and applying modern technologies</span>
-                                </li>
+                                </li> -->
                             </ul>
                         </div>
                     </div>
@@ -786,39 +1041,7 @@ Cited by:
                 </div>
 
 
-                               <!-- Jr. Software Engineer -->
-                <div class="timeline-item">
-                    <div class="flex flex-col sm:flex-row sm:items-start gap-4">
-                        <div class="flex-shrink-0">
-                            <div class="w-12 h-12 bg-white border border-academic-border rounded-sm flex items-center justify-center">
-                                <img src="asset/irb.jpg" alt="Islamic Relief Bangladesh" class="w-7 h-7 object-contain rounded-sm">
-                            </div>
-                        </div>
-                        <div class="flex-1">
-                            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-1">
-                                <h3 class="font-serif-heading text-lg font-semibold text-academic-navy">
-                                    Volunteer at Humanitarian and Resilience Program
-                                </h3>
-                                <span class="timeline-date">Mar 2022 – Sep 2023</span>
-                            </div>
-                            <p class="text-academic-text-body font-medium mb-2">Islamic Relief Bangladesh</p>
-                            <ul class="text-sm text-academic-text-body space-y-1.5 list-none">
-                                <li class="flex items-start gap-2">
-                                    <span class="text-academic-gold mt-1.5 flex-shrink-0">▸</span>
-                                    <span>Developed a Web based software that automate the document processing of large amount of benificiaries from Excel to multiple PDF formats.</span>
-                                </li>
-                                <li class="flex items-start gap-2">
-                                    <span class="text-academic-gold mt-1.5 flex-shrink-0">▸</span>
-                                    <span>Employing Javascript and python to process large scale of data and organize into various predefined report formats and include image and attatchment.</span>
-                                </li>
-                                <li class="flex items-start gap-2">
-                                    <span class="text-academic-gold mt-1.5 flex-shrink-0">▸</span>
-                                    <span>Reduced time and human engagement by implementing one file to multi format documents processing.</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+                
 
                 <!-- AI Engineer Intern
                 <div class="timeline-item">
@@ -852,79 +1075,123 @@ Cited by:
             </div>
         </section>
 
+
+
+
+
+
+
+
+
+
+
+
         <!-- Projects Section -->
         <section id="projects" class="academic-section">
             <h2 class="section-heading">Selected Projects</h2>
             <p class="section-subtitle">A curated selection of academic and professional software projects</p>
             <div class="section-divider"></div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+
+                   <div class="project-card">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-10 h-10 bg-red-50 rounded-sm flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-user-graduate text-academic-navy"></i>
+                        </div>
+                        <h3 class="font-serif-heading font-semibold text-academic-navy">Foreign Purchase Management Module
+</h3>
+                    </div>
+                    <p class="text-sm text-academic-text-body mb-3 leading-relaxed">Developed a custom Odoo ERP module to manage foreign purchase operations, streamline procurement workflows, and improve purchase tracking and documentation through integrated business processes.
+</p>
+                    <div class="flex flex-wrap gap-1 mb-3">
+                        <span class="skill-tag">Odoo 18</span>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">XML</span>
+                                                <span class="skill-tag">PostgreSQL</span>
+
+                    </div>
+                    <div class="flex gap-4">
+                        <a href="https://github.com/mostakimjihad/VITA" class="text-sm text-academic-navy hover:text-academic-burgundy transition-colors font-medium">
+                            <i class="fab fa-github text-xs mr-1"></i> GitHub
+                        </a>
+                        <!-- <a href="https://youtu.be/qcQs7_vUBCk" class="text-sm text-academic-navy hover:text-academic-burgundy transition-colors font-medium">
+                            <i class="fas fa-play text-xs mr-1"></i> Demo
+                        </a> -->
+                    </div>
+                </div>
+
+
                 <!-- Project 1 -->
-                <!-- <div class="project-card">
+                <div class="project-card">
                     <div class="flex items-center gap-3 mb-3">
                         <div class="w-10 h-10 bg-blue-50 rounded-sm flex items-center justify-center flex-shrink-0">
                             <i class="fas fa-robot text-academic-navy"></i>
                         </div>
-                        <h3 class="font-serif-heading font-semibold text-academic-navy">Bangla Chatbot for LDTax</h3>
+                        <h3 class="font-serif-heading font-semibold text-academic-navy">Blockchain Based Voting Application</h3>
                     </div>
-                    <p class="text-sm text-academic-text-body mb-3 leading-relaxed">Land Development Tax Management System with modern online payment and search capabilities.</p>
+                    <p class="text-sm text-academic-text-body mb-3 leading-relaxed">Decentralized Voting DApp (Solidity/Hardhat, Ethereum Sepolia): Designed and deployed a smart-contract
+voting application on the Testnet with a web frontend, exploring tamper-resistant and transparent recordkeeping.</p>
                     <div class="flex flex-wrap gap-1 mb-3">
-                        <span class="skill-tag">Langchain</span>
-                        <span class="skill-tag">Flask</span>
-                        <span class="skill-tag">JavaScript</span>
-                        <span class="skill-tag">MySQL</span>
+                        <span class="skill-tag">Blockchain</span>
+                        <span class="skill-tag">Solidity</span>
+                        <span class="skill-tag">Sapolia</span>
+                        <span class="skill-tag">HardHat</span>
                     </div>
-                    <a href="https://ldtax.gov.bd/" class="text-sm text-academic-navy hover:text-academic-burgundy transition-colors font-medium">
-                        <i class="fas fa-external-link-alt text-xs mr-1"></i> View Project
+                    <a href="https://github.com/MasrukAhmedMurad/votingDapp" class="text-sm text-academic-navy hover:text-academic-burgundy transition-colors font-medium">
+                        <i class="fas fa-external-link-alt text-xs mr-1"></i> Github
                     </a>
-                </div> -->
+                </div>
 
                 <!-- Project 2 -->
-                <!-- <div class="project-card">
+                <div class="project-card">
                     <div class="flex items-center gap-3 mb-3">
                         <div class="w-10 h-10 bg-green-50 rounded-sm flex items-center justify-center flex-shrink-0">
                             <i class="fas fa-tasks text-academic-navy"></i>
                         </div>
-                        <h3 class="font-serif-heading font-semibold text-academic-navy">TaskManager</h3>
+                        <h3 class="font-serif-heading font-semibold text-academic-navy">Docs Automation</h3>
                     </div>
-                    <p class="text-sm text-academic-text-body mb-3 leading-relaxed">Task management system that streamlines workflows and enhances collaboration for teams.</p>
+                    <p class="text-sm text-academic-text-body mb-3 leading-relaxed">Beneficiary Document Automation (Islamic Relief Bangladesh) Using JavaScript, Python, HTML, Excel</p>
                     <div class="flex flex-wrap gap-1 mb-3">
-                        <span class="skill-tag">Django</span>
-                        <span class="skill-tag">MySQL</span>
-                        <span class="skill-tag">Bootstrap</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">Html</span>
+                        <span class="skill-tag">CSS</span>
+                                                <span class="skill-tag">File Processing</span>
+
                     </div>
                     <div class="flex gap-4">
-                        <a href="https://github.com/mostakimjihad/TaskManager" class="text-sm text-academic-navy hover:text-academic-burgundy transition-colors font-medium">
+                        <a href="https://github.com/MasrukAhmedMurad/Islamic-relief-bangladesh-task-automation" class="text-sm text-academic-navy hover:text-academic-burgundy transition-colors font-medium">
                             <i class="fab fa-github text-xs mr-1"></i> GitHub
                         </a>
-                        <a href="https://www.youtube.com/watch?v=yhv9OjMyHz8" class="text-sm text-academic-navy hover:text-academic-burgundy transition-colors font-medium">
+                        <!-- <a href="https://www.youtube.com/watch?v=yhv9OjMyHz8" class="text-sm text-academic-navy hover:text-academic-burgundy transition-colors font-medium">
                             <i class="fas fa-play text-xs mr-1"></i> Demo
-                        </a>
+                        </a> -->
                     </div>
-                </div> -->
+                </div>
 
                 <!-- Project 3 -->
-                <!-- <div class="project-card">
+                <div class="project-card">
                     <div class="flex items-center gap-3 mb-3">
                         <div class="w-10 h-10 bg-amber-50 rounded-sm flex items-center justify-center flex-shrink-0">
-                            <i class="fas fa-utensils text-academic-navy"></i>
+                            <i class="fas fa-bank text-academic-navy"></i>
                         </div>
-                        <h3 class="font-serif-heading font-semibold text-academic-navy">KhabarKoi</h3>
+                        <h3 class="font-serif-heading font-semibold text-academic-navy">Java Banking System</h3>
                     </div>
-                    <p class="text-sm text-academic-text-body mb-3 leading-relaxed">Restaurant management Android app for searching restaurants and managing menus.</p>
+                    <p class="text-sm text-academic-text-body mb-3 leading-relaxed">A Java-based banking application demonstrating core banking operations using object-oriented programming.</p>
                     <div class="flex flex-wrap gap-1 mb-3">
                         <span class="skill-tag">Java</span>
-                        <span class="skill-tag">XML</span>
-                        <span class="skill-tag">Firebase</span>
+                        <span class="skill-tag">Apache</span>
+                        <span class="skill-tag">MySQL</span>
                     </div>
                     <div class="flex gap-4">
-                        <a href="https://github.com/mostakimjihad/KhabarKoi" class="text-sm text-academic-navy hover:text-academic-burgundy transition-colors font-medium">
+                        <a href="https://github.com/MasrukAhmedMurad/java-banking-project" class="text-sm text-academic-navy hover:text-academic-burgundy transition-colors font-medium">
                             <i class="fab fa-github text-xs mr-1"></i> GitHub
                         </a>
-                        <a href="https://www.youtube.com/watch?v=357hAKYDg4s" class="text-sm text-academic-navy hover:text-academic-burgundy transition-colors font-medium">
+                        <!-- <a href="https://www.youtube.com/watch?v=357hAKYDg4s" class="text-sm text-academic-navy hover:text-academic-burgundy transition-colors font-medium">
                             <i class="fas fa-play text-xs mr-1"></i> Demo
-                        </a>
+                        </a> -->
                     </div>
-                </div> -->
+                </div>
 
                 <!-- Project 4 -->
                 <!-- <div class="project-card">
@@ -945,28 +1212,7 @@ Cited by:
                 </div> -->
 
                 <!-- Project 5 -->
-                <!-- <div class="project-card">
-                    <div class="flex items-center gap-3 mb-3">
-                        <div class="w-10 h-10 bg-red-50 rounded-sm flex items-center justify-center flex-shrink-0">
-                            <i class="fas fa-user-graduate text-academic-navy"></i>
-                        </div>
-                        <h3 class="font-serif-heading font-semibold text-academic-navy">VITA</h3>
-                    </div>
-                    <p class="text-sm text-academic-text-body mb-3 leading-relaxed">Arduino-based robot with face recognition for attendance and classroom monitoring.</p>
-                    <div class="flex flex-wrap gap-1 mb-3">
-                        <span class="skill-tag">Python</span>
-                        <span class="skill-tag">C++</span>
-                        <span class="skill-tag">Arduino</span>
-                    </div>
-                    <div class="flex gap-4">
-                        <a href="https://github.com/mostakimjihad/VITA" class="text-sm text-academic-navy hover:text-academic-burgundy transition-colors font-medium">
-                            <i class="fab fa-github text-xs mr-1"></i> GitHub
-                        </a>
-                        <a href="https://youtu.be/qcQs7_vUBCk" class="text-sm text-academic-navy hover:text-academic-burgundy transition-colors font-medium">
-                            <i class="fas fa-play text-xs mr-1"></i> Demo
-                        </a>
-                    </div>
-                </div> -->
+             
 
                 <!-- Project 6 -->
                 <!-- <div class="project-card">
@@ -990,9 +1236,27 @@ Cited by:
 
         <!-- Skills Section -->
         <section id="skills" class="academic-section">
-            <h2 class="section-heading">Technical Skills</h2>
+            <h2 class="section-heading">Skills</h2>
             <div class="section-divider"></div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+                <div class="skill-category">
+                    <h3 class="font-serif-heading font-semibold text-academic-navy mb-3 flex items-center gap-2">
+                        <i class="fas fa-code text-academic-gold text-sm"></i>
+                        Research Skills
+                    </h3>
+                    <div class="flex flex-wrap gap-1">
+                        <span class="skill-tag">Research Gap Findings</span>
+                        <span class="skill-tag">Critical Thinking</span>
+                        <span class="skill-tag">Experimental Design</span>
+                        <span class="skill-tag">Research Paper Reading</span>
+                        <span class="skill-tag">Academic Writing</span>
+                        <span class="skill-tag">LaTeX</span>
+
+
+                      
+                    </div>
+                </div>
                 <div class="skill-category">
                     <h3 class="font-serif-heading font-semibold text-academic-navy mb-3 flex items-center gap-2">
                         <i class="fas fa-code text-academic-gold text-sm"></i>
@@ -1011,27 +1275,20 @@ Cited by:
                 <div class="skill-category">
                     <h3 class="font-serif-heading font-semibold text-academic-navy mb-3 flex items-center gap-2">
                         <i class="fas fa-brain text-academic-gold text-sm"></i>
-                        AI/ML Frameworks
+                        AI/ML Frameworks &  Data Analysis
                     </h3>
                     <div class="flex flex-wrap gap-1">
                         <span class="skill-tag">scikit-learn</span>
                         <span class="skill-tag">PyTorch</span>
                         <span class="skill-tag">TensorFlow</span>
-                    </div>
-                </div>
-
-                <div class="skill-category">
-                    <h3 class="font-serif-heading font-semibold text-academic-navy mb-3 flex items-center gap-2">
-                        <i class="fas fa-chart-line text-academic-gold text-sm"></i>
-                        Data Analysis & Visualization
-                    </h3>
-                    <div class="flex flex-wrap gap-1">
-                        <span class="skill-tag">Pandas</span>
+                          <span class="skill-tag">Pandas</span>
                         <span class="skill-tag">NumPy</span>
                         <span class="skill-tag">Matplotlib</span>
                         <span class="skill-tag">Seaborn</span>
                     </div>
                 </div>
+
+           
 
                 <div class="skill-category">
                     <h3 class="font-serif-heading font-semibold text-academic-navy mb-3 flex items-center gap-2">
@@ -1061,20 +1318,154 @@ Cited by:
                     </div>
                 </div>
 
-                <div class="skill-category">
+                    <div class="skill-category">
                     <h3 class="font-serif-heading font-semibold text-academic-navy mb-3 flex items-center gap-2">
-                        <i class="fas fa-flask text-academic-gold text-sm"></i>
-                        Research Methodology
+                        <i class="fas fa-globe text-academic-gold text-sm"></i>
+                        Technical Skills
                     </h3>
                     <div class="flex flex-wrap gap-1">
-                        <span class="skill-tag">Experiment Design</span>
-                        <span class="skill-tag">Simulation</span>
-                        <span class="skill-tag">LaTeX</span>
-                        <span class="skill-tag">Academic Writing</span>
+                        <span class="skill-tag">Cloud Computing</span>
+                        <span class="skill-tag">Cloud Computing</span>
+                        <span class="skill-tag">Observability</span>
+                        <span class="skill-tag">Bio embedding</span>
                     </div>
                 </div>
+
+        
             </div>
         </section>
+
+
+
+
+          <!-- Work Experience Section -->
+        <section id="volunteering" class="academic-section">
+            <h2 class="section-heading">Volunteering & Leadership Experience</h2>
+            <div class="section-divider"></div>
+            <div class="pl-1">
+                <!-- Software Engineer -->
+                <div class="timeline-item">
+                    <div class="flex flex-col sm:flex-row sm:items-start gap-4">
+                        <div class="flex-shrink-0">
+                            <div class="w-12 h-12 bg-white border border-academic-border rounded-sm flex items-center justify-center">
+                                <img src="asset/irb.jpg" alt="Unisoft Systems" class="w-7 h-7 object-contain rounded-sm">
+                            </div>
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-1">
+                                <h3 class="font-serif-heading text-lg font-semibold text-academic-navy">
+                                    Volunteer at Humanitarian and Resilience Program
+                                </h3>
+                                <span class="timeline-date">March 2022 – September 2023</span>
+                            </div>
+                            <p class="text-academic-text-body font-medium mb-2"><strong>Islamic Relief Bangladesh</strong> | Baridhara Dhaka-1212, Bangladesh</p>
+                            <ul class="text-sm text-academic-text-body space-y-1.5 list-none">
+                                <li class="flex items-start gap-2">
+                                    <span class="text-academic-gold mt-1.5 flex-shrink-0">▸</span>
+                                    <span>Built a web tool (JavaScript, Python) that automated conversion of large beneficiary Excel datasets into multiple PDF
+formats, cutting manual effort by 50%.</span>
+                                </li>
+                                <!-- <li class="flex items-start gap-2">
+                                    <span class="text-academic-gold mt-1.5 flex-shrink-0">▸</span>
+                                    <span>Improve ERP performance and scalability by researching and applying modern technologies</span>
+                                </li> -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Jr. Software Engineer -->
+                <div class="timeline-item">
+                    <div class="flex flex-col sm:flex-row sm:items-start gap-4">
+                        <div class="flex-shrink-0">
+                            <div class="w-12 h-12 bg-white border border-academic-border rounded-sm flex items-center justify-center">
+                                <img src="asset/gnb.jpeg" alt="MindSynth" class="w-7 h-7 object-contain rounded-sm">
+                            </div>
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-1">
+                                <h3 class="font-serif-heading text-lg font-semibold text-academic-navy">
+                                    Volunteer Facilitator | (Community Development Project)
+                                </h3>
+                                <span class="timeline-date">October 2020 – April 2021</span>
+                            </div>
+                            <p class="text-academic-text-body font-medium mb-2"><strong>Good Neighbors Bangladesh</strong> | Swadesh Shornally Abashan, Khilkhet, Dhaka, Bangladesh</p>
+
+                            <ul class="text-sm text-academic-text-body space-y-1.5 list-none">
+                                <li class="flex items-start gap-2">
+                                    <span class="text-academic-gold mt-1.5 flex-shrink-0">▸</span>
+                                    <span>Facilitated and managed community development programs supporting over 1,500 children across designated Good
+Neighbors Bangladesh Community Development Program.</span>
+                                </li>
+                                <!-- <li class="flex items-start gap-2">
+                                    <span class="text-academic-gold mt-1.5 flex-shrink-0">▸</span>
+                                    <span>Undertook Odoo custom development, tailoring, and configuration</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-academic-gold mt-1.5 flex-shrink-0">▸</span>
+                                    <span>Learned the Odoo Module development</span>
+                                </li> -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    <!-- Awards Section -->
+        <section id="awards" class="academic-section">
+            <h2 class="section-heading">Awards | Achievements | Certifications</h2>
+            <div class="section-divider"></div>
+            <div class="space-y-3">
+                    <div class="flex items-start gap-3">
+                        <div class="flex-shrink-0 mt-0.5">
+                            <i class="fas fa-certificate text-academic-gold"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-serif-heading font-semibold text-academic-navy">Foundations of Cybersecurity
+</h3>
+                            <p class="text-sm text-academic-gold font-medium mb-1">Google (Coursera) |<a href="https://www.coursera.org/account/accomplishments/verify/UKE5LXCBBNBT" 
+                           class="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-blue px-1 py-2 text-sm transition-colors rounded-sm border border-white/10">
+                             View Certificate
+                        </a></p>
+                            <p class="text-sm text-academic-text-body leading-relaxed">Completed foundational training in cybersecurity, covering security principles, common threats and vulnerabilities, risk management, and essential practices for protecting systems and data.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="award-item">
+
+                <div class="award-item">
+                    <div class="flex items-start gap-3">
+                        <div class="flex-shrink-0 mt-0.5">
+                            <i class="fas fa-award text-academic-navy"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-serif-heading font-semibold text-academic-navy">Vice Chancellor's Award</h3>
+                            <p class="text-sm text-academic-gold font-medium mb-1">Green University of Bangladesh | Summer 2022 & Fall 2022</p>
+                            <p class="text-sm text-academic-text-body leading-relaxed">Issued by Prof. Dr. Md. Saiful Azad for academic excellence — awarded twice consecutively.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="award-item">
+                    <div class="flex items-start gap-3">
+                        <div class="flex-shrink-0 mt-0.5">
+                            <i class="fas fa-award text-academic-navy"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-serif-heading font-semibold text-academic-navy">Dean's Award</h3>
+                            <p class="text-sm text-academic-gold font-medium mb-1">Green University of Bangladesh | Fall 2023</p>
+                            <p class="text-sm text-academic-text-body leading-relaxed">Issued by Dr. Muhammad Aminur Rahaman for outstanding academic performance.</p>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+        </section>
+
+
+
+
 
         <!-- Programming Activity Section -->
         <section id="programming" class="academic-section">
@@ -1155,11 +1546,13 @@ Cited by:
             </div>
         </section>
 
+     
+
         <!-- Professional Memberships -->
-        <section id="memberships" class="academic-section">
+        <!-- <section id="memberships" class="academic-section">
             <h2 class="section-heading">Professional Memberships & Activities</h2>
             <div class="section-divider"></div>
-            <div class="space-y-4">
+            <div class="space-y-4"> -->
                 <!-- <div class="membership-card">
                     <div class="flex items-start gap-4">
                         <div class="flex-shrink-0 w-10 h-10 bg-academic-navy/5 rounded-sm flex items-center justify-center">
@@ -1198,8 +1591,8 @@ Cited by:
                         </div>
                     </div>
                 </div> -->
-            </div>
-        </section>
+            <!-- </div>
+        </section> -->
 
         <!-- Blog Section -->
         <section id="blog" class="academic-section">
@@ -1271,51 +1664,7 @@ Cited by:
             </div>
         </section>
 
-        <!-- Awards Section -->
-        <section id="awards" class="academic-section">
-            <h2 class="section-heading">Awards & Achievements</h2>
-            <div class="section-divider"></div>
-            <div class="space-y-3">
-                <!-- <div class="award-item">
-                    <div class="flex items-start gap-3">
-                        <div class="flex-shrink-0 mt-0.5">
-                            <i class="fas fa-trophy text-academic-gold"></i>
-                        </div>
-                        <div>
-                            <h3 class="font-serif-heading font-semibold text-academic-navy">IEEExtreme 17.0 | Team GreenT</h3>
-                            <p class="text-sm text-academic-gold font-medium mb-1">Ranked 13th in Bangladesh | Team Lead</p>
-                            <p class="text-sm text-academic-text-body leading-relaxed">Led Team GreenT to achieve 13th position in IEEExtreme 17.0, demonstrating strong problem-solving and teamwork in this prestigious 24-hour global programming competition.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="award-item">
-                    <div class="flex items-start gap-3">
-                        <div class="flex-shrink-0 mt-0.5">
-                            <i class="fas fa-award text-academic-navy"></i>
-                        </div>
-                        <div>
-                            <h3 class="font-serif-heading font-semibold text-academic-navy">Vice Chancellor's Award</h3>
-                            <p class="text-sm text-academic-gold font-medium mb-1">Green University of Bangladesh | Summer 2022 & Fall 2022</p>
-                            <p class="text-sm text-academic-text-body leading-relaxed">Issued by Prof. Dr. Md. Saiful Azad for academic excellence — awarded twice consecutively.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="award-item">
-                    <div class="flex items-start gap-3">
-                        <div class="flex-shrink-0 mt-0.5">
-                            <i class="fas fa-award text-academic-navy"></i>
-                        </div>
-                        <div>
-                            <h3 class="font-serif-heading font-semibold text-academic-navy">Dean's Award</h3>
-                            <p class="text-sm text-academic-gold font-medium mb-1">Green University of Bangladesh | Fall 2023</p>
-                            <p class="text-sm text-academic-text-body leading-relaxed">Issued by Dr. Muhammad Aminur Rahaman for outstanding academic performance.</p>
-                        </div>
-                    </div>
-                </div> -->
-            </div>
-        </section>
+       
 
     </main>
 
@@ -1325,7 +1674,7 @@ Cited by:
             <div class="flex flex-col md:flex-row items-center justify-between gap-4">
                 <div class="text-center md:text-left">
                     <p class="text-white/90 font-serif-heading text-lg font-semibold">M. A. Murad</p>
-                    <p class="text-white/50 text-sm">Software Engineer & Researcher</p>
+                    <p class="text-white/50 text-sm">Software Engineer | MS/PhD Applicant in Cloud Systems</p>
                 </div>
                 <div class="flex items-center gap-5">
                     <a href="mailto:masrukahmedmurad@gmail.com" class="text-white/50 hover:text-academic-gold transition-colors" title="Email">
@@ -1428,6 +1777,74 @@ Cited by:
                 console.log('Scholar stats fetch failed, using defaults:', e.message);
             }
         })();
+
+
+
+// Who I Am: character-limit read more / show less
+(function () {
+    const content = document.getElementById('who-content');
+    const btn = document.getElementById('who-toggle');
+    if (!content || !btn) return;
+
+    const LIMIT = 200; // number of characters shown when collapsed
+    const fullText = content.textContent.trim().replace(/\s+/g, ' ');
+
+    if (fullText.length <= LIMIT) {
+        btn.style.display = 'none';
+        return;
+    }
+
+    // Cut at the last full word before the limit
+    let short = fullText.slice(0, LIMIT);
+    const lastSpace = short.lastIndexOf(' ');
+    if (lastSpace > 0) short = short.slice(0, lastSpace);
+    short = short.replace(/[,.;:\s]+$/, '') + '…';
+
+    let open = false;
+    function render() {
+        content.textContent = open ? fullText : short;
+        btn.textContent = open ? 'Show less' : 'Read more';
+        btn.setAttribute('aria-expanded', open);
+    }
+
+    btn.addEventListener('click', () => {
+        open = !open;
+        render();
+    });
+
+    render();
+})();
+
+// Activities slider
+(function () {
+    const track = document.getElementById('act-track');
+    const prev = document.getElementById('act-prev');
+    const next = document.getElementById('act-next');
+    if (!track || !prev || !next) return;
+
+    function step() {
+        const slide = track.querySelector('.act-slide');
+        return slide.getBoundingClientRect().width + 16; // slide width + gap
+    }
+    function update() {
+        prev.disabled = track.scrollLeft <= 2;
+        next.disabled = track.scrollLeft + track.clientWidth >= track.scrollWidth - 2;
+    }
+
+    prev.addEventListener('click', () => track.scrollBy({ left: -step(), behavior: 'smooth' }));
+    next.addEventListener('click', () => track.scrollBy({ left:  step(), behavior: 'smooth' }));
+    track.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    track.addEventListener('keydown', e => {
+        if (e.key === 'ArrowRight') next.click();
+        if (e.key === 'ArrowLeft') prev.click();
+    });
+    update();
+})();
+
+
+
+
     </script>
 </body>
 </html>
